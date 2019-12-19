@@ -38,12 +38,12 @@ const MenuBar = props => {
 
   return (
     <div className={classNames} onClick={closeItemsHandler} >
-      <BurgerMenu showItemsHandler={showItemsHandler} color={props.color} style={props.burgerIconStyle} />
+      <BurgerMenu showItemsHandler={showItemsHandler} color={props.backgroundColor} style={props.burgerIconStyle} />
 
       <MenuItems
         showMenuItems={showMenuItems}
         animation={props.animation}
-        color={props.color}
+        color={props.backgroundColor}
         Data={props.data}
         textColor={props.textColor}
         width={props.menuItemsWidth}
@@ -55,7 +55,7 @@ const MenuBar = props => {
 
 MenuBar.propTypes = {
   data: PropTypes.object,
-  color: PropTypes.string,
+  backgroundColor: PropTypes.string,
   animation: PropTypes.array,
   textColor: PropTypes.any,
   menuItemsWidth: PropTypes.any,

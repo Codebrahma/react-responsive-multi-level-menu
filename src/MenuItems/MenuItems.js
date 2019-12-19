@@ -18,11 +18,16 @@ const MenuItems = props => {
     if (
       notificationRef.current &&
       notificationRef.current.offsetParent.offsetLeft >
-        notificationRef.current.offsetWidth
+        notificationRef.current.offsetParent.offsetWidth
     ) {
       setStyle('right')
-    } else {
+    } else if (notificationRef.current &&
+      notificationRef.current.offsetParent.offsetLeft <
+        notificationRef.current.offsetParent.offsetWidth
+    ) {
       setStyle('left')
+    } else {
+      setStyle(style)
     }
   })
 
