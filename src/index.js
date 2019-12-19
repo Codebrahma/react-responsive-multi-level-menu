@@ -34,7 +34,7 @@ const MenuBar = props => {
 
   return (
     <div className={classNames}>
-      <BurgerMenu showItemsHandler={showItemsHandler} color={props.backgroundColor} style={props.burgerIconStyle} />
+      <BurgerMenu showItemsHandler={showItemsHandler} color={props.backgroundColor} style={props.burgerIconStyle} lineColor={props.burgerIconLineColor} />
 
       <MenuItems
         showMenuItems={showMenuItems}
@@ -57,6 +57,7 @@ MenuBar.propTypes = {
   menuItemsWidth: PropTypes.any,
   menuItemsMaxHeight: PropTypes.any,
   burgerIconStyle: PropTypes.string,
+  burgerIconLineColor: PropTypes.string,
   style: PropTypes.any
 }
 
