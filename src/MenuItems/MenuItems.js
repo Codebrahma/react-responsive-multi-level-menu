@@ -5,23 +5,15 @@ import MenuItem from '../MenuItem/MenuItem'
 import PropTypes from 'prop-type'
 
 const MenuItems = props => {
-  const [itemsToShow, setItemsToShow] = useState(props.Data)
-  const [itemsStack, setItemsStack] = useState([props.Data])
-  const [id, setId] = useState(props.Data.id)
-  const [move, changeMove] = useState('next')
-  const [style, setStyle] = useState(null)
-
-  const notificationRef = useRef(null)
-
   useEffect(() => {
-    console.log(notificationRef)
     if (
       notificationRef.current &&
       notificationRef.current.offsetParent.offsetLeft >
         notificationRef.current.offsetParent.offsetWidth
     ) {
       setStyle('right')
-    } else if (notificationRef.current &&
+    } else if (
+      notificationRef.current &&
       notificationRef.current.offsetParent.offsetLeft <
         notificationRef.current.offsetParent.offsetWidth
     ) {
@@ -30,6 +22,14 @@ const MenuItems = props => {
       setStyle(style)
     }
   })
+
+  const [itemsToShow, setItemsToShow] = useState(props.Data)
+  const [itemsStack, setItemsStack] = useState([props.Data])
+  const [id, setId] = useState(props.Data.id)
+  const [move, changeMove] = useState('next')
+  const [style, setStyle] = useState(null)
+
+  const notificationRef = useRef(null)
 
   const moveToNext = value => {
     const newItems = itemsToShow.items.find(item => item.value === value)

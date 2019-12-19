@@ -5,8 +5,6 @@ import './styles.css'
 import PropTypes from 'prop-type'
 
 const MenuBar = props => {
-  // props.Data.id='_' + Math.random().toString(36).substr(2, 9);
-
   const [showMenuItems, changeShowMenuItems] = useState(false)
   const generateId = data => {
     data.id =

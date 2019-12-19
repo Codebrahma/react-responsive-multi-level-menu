@@ -8,7 +8,6 @@ const BurgerMenu = props => {
   } else {
     classNames = 'BurgerMenu'
   }
-  console.log(props.lineColor)
   return (
     <div
       className={classNames}
