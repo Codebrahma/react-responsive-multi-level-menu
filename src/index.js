@@ -25,10 +25,6 @@ const MenuBar = props => {
     changeShowMenuItems(!showMenuItems)
   }
 
-  const closeItemsHandler = () => {
-    changeShowMenuItems(false)
-  }
-
   let classNames = ''
   if (props.style) {
     classNames = props.style
@@ -37,7 +33,7 @@ const MenuBar = props => {
   }
 
   return (
-    <div className={classNames} onClick={closeItemsHandler} >
+    <div className={classNames}>
       <BurgerMenu showItemsHandler={showItemsHandler} color={props.backgroundColor} style={props.burgerIconStyle} />
 
       <MenuItems
