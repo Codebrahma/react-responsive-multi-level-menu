@@ -22,7 +22,7 @@ MenuItem.propTypes = {
   value: PropTypes.any,
   nextValue: PropTypes.any,
   moveToNext: PropTypes.func,
-  textColor: PropTypes.any
+  textColor: PropTypes.string
 }
 
 export default MenuItem

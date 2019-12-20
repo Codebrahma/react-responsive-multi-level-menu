@@ -11,7 +11,7 @@ const BurgerMenu = props => {
   return (
     <div
       className={classNames}
-      onClick={event => props.showItemsHandler(event)}
+      onClick={props.showItemsHandler}
       style={
         props.style
           ? null

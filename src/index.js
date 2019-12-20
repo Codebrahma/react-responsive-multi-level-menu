@@ -1,10 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import MenuItems from './MenuItems/MenuItems'
 import BurgerMenu from './BurgerMenu/BurgerMenu'
 import './styles.css'
 import PropTypes from 'prop-type'
 
 const MenuBar = props => {
+  useEffect(() => {
+    document.addEventListener('mousedown', event =>
+      handleClickOutside(event, menubarRef)
+    )
+  })
+
+  function handleClickOutside(event, ref) {
+    if (ref.current && !ref.current.contains(event.target)) {
+      changeShowMenuItems(false)
+    }
+  }
+
   const [showMenuItems, changeShowMenuItems] = useState(false)
   const generateId = data => {
     data.id =
@@ -20,7 +32,12 @@ const MenuBar = props => {
 
   const showItemsHandler = event => {
     event.stopPropagation()
+
     changeShowMenuItems(!showMenuItems)
+  }
+
+  const closeItemsHandler = () => {
+    changeShowMenuItems(false)
   }
 
   let classNames = ''
@@ -30,9 +47,16 @@ const MenuBar = props => {
     classNames = 'menu'
   }
 
+  const menubarRef = useRef(null)
+
   return (
-    <div className={classNames}>
-      <BurgerMenu showItemsHandler={showItemsHandler} color={props.backgroundColor} style={props.burgerIconStyle} lineColor={props.burgerIconLineColor} />
+    <div className={classNames} ref={menubarRef} onClick={closeItemsHandler}>
+      <BurgerMenu
+        showItemsHandler={showItemsHandler}
+        color={props.backgroundColor}
+        style={props.burgerIconStyle}
+        lineColor={props.burgerIconLineColor}
+      />
 
       <MenuItems
         showMenuItems={showMenuItems}
