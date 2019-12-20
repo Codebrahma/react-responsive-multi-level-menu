@@ -1,10 +1,10 @@
 {
-  "name": "cb-react-menubar",
-  "version": "1.0.0",
+  "name": "react-animated-menu-bar",
+  "version": "1.0.1",
   "description": "Flexible and animated Menubars",
   "author": "ashwinKumar0505",
   "license": "MIT",
-  "repository": "ashwinKumar0505/cb-react-menubar",
+  "repository": "ashwinKumar0505/react-animated-menu-bar",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
