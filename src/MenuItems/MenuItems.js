@@ -61,10 +61,20 @@ const MenuItems = props => {
 
   const childFactoryCreator = classNames => child =>
     React.cloneElement(child, { classNames })
+
+  const animation = []
+
+  if (props.animation) {
+    animation[0] = props.animation[0] ? props.animation[1] : 'slideIn'
+    animation[1] = props.animation[0] ? props.animation[1] : 'slideOut'
+  } else {
+    animation[0] = 'slideIn'
+    animation[1] = 'slideOut'
+  }
   return (
     <TransitionGroup
       childFactory={childFactoryCreator(
-        move === 'next' ? props.animation[0] : props.animation[1]
+        move === 'next' ? animation[0] : animation[1]
       )}
     >
       <CSSTransition
@@ -87,7 +97,7 @@ const MenuItems = props => {
             style === 'right'
               ? {
                 backgroundColor: props.color ? props.color : '#08cbc4',
-                width: props.width ? props.width : 500,
+                width: props.width ? props.width : 300,
                 maxHeight: props.height ? props.height : 300,
                 right: 0
               }
