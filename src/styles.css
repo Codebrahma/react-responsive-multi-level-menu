@@ -7,9 +7,9 @@
 
 .line {
   width: 90%;
-  height: 23%;
+  height: 20%;
   margin: auto;
-  margin-bottom: 5px;
+  margin-bottom: 18%;
 }
 
 .line:nth-child(3) {
@@ -63,7 +63,7 @@
   display: flex;
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  padding: 2px 11px;
+  padding: 0 11px;
 }
 
 .Back:hover {
