@@ -97,13 +97,13 @@ const MenuItems = props => {
             style === 'right'
               ? {
                 backgroundColor: props.color ? props.color : '#08cbc4',
-                width: props.width ? props.width : 430,
+                width: props.width ? props.width : 300,
                 maxHeight: props.height ? props.height : 300,
                 right: 0
               }
               : {
                 backgroundColor: props.color ? props.color : '#08cbc4',
-                width: props.width ? props.width : 430,
+                width: props.width ? props.width : 300,
                 maxHeight: props.height ? props.height : 300,
                 left: 0
               }

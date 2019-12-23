@@ -1,13 +1,14 @@
 .BurgerMenu {
-  padding: 6px 3px 2px 5px;
-  width: 36px;
+  padding: 8px;
+  width: 25px;
   cursor: pointer;
-  height: 35px;
+  height: 22px;
 }
 
 .line {
   width: 90%;
-  height: 17%;
+  height: 23%;
+  margin: auto;
   margin-bottom: 5px;
 }
 
