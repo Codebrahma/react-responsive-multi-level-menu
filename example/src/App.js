@@ -70,7 +70,7 @@ const App = () => {
   return (
     <div style={{marginLeft: 100}} className='Main'>
       <h1>Hello google</h1>
-      <ExampleComponent animation={animation} data={menuItems} menuItemsMaxHeight={300} menuItemsWidth={300} />
+      <ExampleComponent />
     </div>
   )
 }

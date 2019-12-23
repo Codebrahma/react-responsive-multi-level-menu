@@ -65,7 +65,7 @@ const MenuItems = props => {
   const animation = []
 
   if (props.animation) {
-    animation[0] = props.animation[0] ? props.animation[1] : 'slideIn'
+    animation[0] = props.animation[0] ? props.animation[0] : 'slideIn'
     animation[1] = props.animation[0] ? props.animation[1] : 'slideOut'
   } else {
     animation[0] = 'slideIn'
@@ -110,7 +110,8 @@ const MenuItems = props => {
           }
         >
           {itemsToShow.items.map(item => {
-            if (item.value === 'back') {
+            let checkItem = item.value.toUpperCase()
+            if (checkItem === 'BACK') {
               return (
                 <div
                   className='Back'
@@ -126,7 +127,7 @@ const MenuItems = props => {
                       color: props.textColor ? props.textColor : 'white'
                     }}
                   >
-                    back
+                    {item.value}
                   </p>
                 </div>
               )

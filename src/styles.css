@@ -1,8 +1,8 @@
 .BurgerMenu {
-  padding: 7px;
-  width: 25px;
+  padding: 5px;
+  width: 36px;
   cursor: pointer;
-  height: 24px;
+  height: 35px;
 }
 
 .line {
@@ -27,7 +27,7 @@
   transform-style: preserve-3d;
   display: flex;
   flex-direction: column;
-  z-index:100;
+  z-index: 100;
 }
 
 .ShowMenuItems {
@@ -63,6 +63,8 @@
   padding: 0 15px;
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  padding: 15px 15px;
+
 }
 
 .Back:hover {

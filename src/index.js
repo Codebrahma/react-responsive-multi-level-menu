@@ -18,6 +18,45 @@ const MenuBar = props => {
   }
 
   const [showMenuItems, changeShowMenuItems] = useState(false)
+
+  const menuItems = {
+    value: 'menuItems',
+    items: [
+      {
+        value: 'Send',
+        items: [
+          {
+            value: 'Back'
+          },
+          {
+            value: 'Data Props',
+            items: [
+              {
+                value: 'Back'
+              },
+              {
+                value: 'To Edit this'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        value: 'The',
+        items: []
+      },
+      { value: 'Data' },
+      { value: 'Props' }
+    ]
+  }
+
+  let Data = {}
+  if (props.data) {
+    Data = props.data
+  } else {
+    Data = menuItems
+  }
+
   const generateId = data => {
     data.id =
       '_' +
@@ -28,7 +67,7 @@ const MenuBar = props => {
       generateId(data.items[i])
     }
   }
-  generateId(props.data)
+  generateId(Data)
 
   const showItemsHandler = event => {
     event.stopPropagation()
@@ -62,7 +101,7 @@ const MenuBar = props => {
         showMenuItems={showMenuItems}
         animation={props.animation}
         color={props.backgroundColor}
-        Data={props.data}
+        Data={Data}
         textColor={props.textColor}
         width={props.menuItemsWidth}
         height={props.menuItemsMaxHeight}
