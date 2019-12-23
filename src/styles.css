@@ -1,5 +1,5 @@
 .BurgerMenu {
-  padding: 5px;
+  padding: 6px 3px 2px 5px;
   width: 36px;
   cursor: pointer;
   height: 35px;
@@ -60,10 +60,9 @@
 
 .Back {
   display: flex;
-  padding: 0 15px;
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  padding: 15px 15px;
+  padding: 10px 8px;
 
 }
 
@@ -73,7 +72,7 @@
 
 
 .MenuItem {
-  padding:10px 8px;
+  padding: 10px 8px;
   font-weight: 100;
   display: flex;
   justify-content: space-between;
