@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { IoMdArrowDropleft } from 'react-icons/io'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import MenuItem from '../MenuItem/MenuItem'
-import PropTypes from 'prop-type'
+import PropTypes from 'prop-types'
 
 const MenuItems = props => {
   useEffect(() => {

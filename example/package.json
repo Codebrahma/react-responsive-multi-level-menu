@@ -7,7 +7,7 @@
   "dependencies": {
     "cb-react-menubar": "file:..",
     "prop-type": "0.0.1",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-icons": "^3.8.0",

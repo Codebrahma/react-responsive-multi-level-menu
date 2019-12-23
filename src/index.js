@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import MenuItems from './MenuItems/MenuItems'
 import BurgerMenu from './BurgerMenu/BurgerMenu'
 import './styles.css'
-import PropTypes from 'prop-type'
+import PropTypes from 'prop-types'
 
 const MenuBar = props => {
   useEffect(() => {
