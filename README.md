@@ -1,4 +1,4 @@
-# React Flexible And Animated Menubar
+# cb-react-menubar
 
 A react library which provides flexible and cool animated menubar with an easy to use API and a bunch of awesome features . Give it a try and you will love it for sure.
 
@@ -28,14 +28,13 @@ class Example extends Component {
 
 For the complete documentation.visit the below link.
 
-https://cranky-almeida-96c197.netlify.com/src-introduction
-
+https://cb-react-menubar-docs.netlify.com/src-introduction
 
 ## Live Preview
 
 For demo of menubar . Visit the below link
 
-https://heuristic-mcclintock-2d26b7.netlify.com/
+https://cb-react-menubar-demo.netlify.com/
 
 ## License
 
