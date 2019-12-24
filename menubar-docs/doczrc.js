@@ -1,8 +1,9 @@
 export default {
+  dest: './dist',
   menu: [
     'Introduction',
     'Getting Started',
-    { name: 'API', menu: ['Menubar'] },
-    'Animation'
+    'Animation',
+    { name: 'API', menu: ['Menubar'] }
   ]
 }
