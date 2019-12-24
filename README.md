@@ -28,8 +28,14 @@ class Example extends Component {
 
 For the complete documentation.visit the below link.
 
+https://cranky-almeida-96c197.netlify.com/src-introduction
 
 
+## Live Preview
+
+For demo of menubar . Visit the below link
+
+https://heuristic-mcclintock-2d26b7.netlify.com/
 
 ## License
 
