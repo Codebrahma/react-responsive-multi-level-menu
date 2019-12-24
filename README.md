@@ -1,8 +1,6 @@
-# cb-react-menubar
+# React Flexible And Animated Menubar
 
-> Flexible and animated Menubars
-
-[![NPM](https://img.shields.io/npm/v/cb-react-menubar.svg)](https://www.npmjs.com/package/cb-react-menubar) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+A react library which provides flexible and cool animated menubar with an easy to use API and a bunch of awesome features . Give it a try and you will love it for sure.
 
 ## Install
 
@@ -15,16 +13,23 @@ npm install --save cb-react-menubar
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'cb-react-menubar'
+import menubar from 'cb-react-menubar'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <menubar data={ItemsToBeRendered}/>
     )
   }
 }
 ```
+
+## Guide And Documentation
+
+For the complete documentation.visit the below link.
+
+
+
 
 ## License
 
