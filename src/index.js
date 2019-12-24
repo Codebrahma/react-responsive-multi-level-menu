@@ -81,7 +81,7 @@ const MenuBar = props => {
 
   let classNames = ''
   if (props.style) {
-    classNames = props.style
+    classNames = [props.style, 'menu'].join(' ')
   } else {
     classNames = 'menu'
   }
@@ -89,7 +89,7 @@ const MenuBar = props => {
   const menubarRef = useRef(null)
 
   return (
-    <div className={classNames} ref={menubarRef} onClick={closeItemsHandler}>
+    <div className={classNames} ref={menubarRef} onClick={closeItemsHandler} style={{fontSize: props.fontSize ? props.fontSize : 16}}>
       <BurgerMenu
         showItemsHandler={showItemsHandler}
         color={props.backgroundColor}
@@ -119,7 +119,8 @@ MenuBar.propTypes = {
   menuItemsMaxHeight: PropTypes.any,
   burgerIconStyle: PropTypes.string,
   burgerIconLineColor: PropTypes.string,
-  style: PropTypes.any
+  style: PropTypes.any,
+  fontSize: PropTypes.any
 }
 
 export default MenuBar
