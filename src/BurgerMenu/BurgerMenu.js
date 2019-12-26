@@ -1,34 +1,34 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const BurgerMenu = props => {
+const BurgerMenu = ({ style , showItemsHandler , color , lineColor }) => {
   let classNames
-  if (props.style) {
-    classNames = props.style
+  if (style) {
+    classNames = style
   } else {
     classNames = 'BurgerMenu'
   }
   return (
     <div
       className={classNames}
-      onClick={props.showItemsHandler}
+      onClick={showItemsHandler}
       style={
-        props.style
+        style
           ? null
-          : { backgroundColor: props.color ? props.color : '#4dccc4' }
+          : { backgroundColor: color }
       }
     >
       <div
         className='line'
-        style={{ backgroundColor: props.lineColor ? props.lineColor : 'white' }}
+        style={{ backgroundColor: lineColor}}
       />
       <div
         className='line'
-        style={{ backgroundColor: props.lineColor ? props.lineColor : 'white' }}
+        style={{ backgroundColor: lineColor}}
       />
       <div
         className='line'
-        style={{ backgroundColor: props.lineColor ? props.lineColor : 'white' }}
+        style={{ backgroundColor: lineColor}}
       />
     </div>
   )

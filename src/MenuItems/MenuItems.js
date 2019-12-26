@@ -1,164 +1,153 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { IoMdArrowDropleft } from 'react-icons/io'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import MenuItem from '../MenuItem/MenuItem'
-import PropTypes from 'prop-types'
+import React, { useState, useRef, useEffect } from 'react';
+import { IoMdArrowDropleft } from 'react-icons/io';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import PropTypes from 'prop-types';
+import MenuItem from '../MenuItem/MenuItem';
 
-const MenuItems = props => {
+const MenuItems = ({
+  Data,
+  animation,
+  showMenuItems,
+  color,
+  textColor,
+  width,
+  height,
+}) => {
+  const [style, setStyle] = useState(null);
+  const notificationRef = useRef(null);
   useEffect(() => {
     if (
-      notificationRef.current &&
-      notificationRef.current.offsetParent.offsetLeft >
-        notificationRef.current.offsetParent.offsetWidth
+      notificationRef.current
+      && notificationRef.current.offsetParent.offsetLeft
+        > notificationRef.current.offsetParent.offsetWidth
     ) {
-      setStyle('right')
+      setStyle('right');
     } else if (
-      notificationRef.current &&
-      notificationRef.current.offsetParent.offsetLeft <
-        notificationRef.current.offsetParent.offsetWidth
+      notificationRef.current
+      && notificationRef.current.offsetParent.offsetLeft
+        < (notificationRef.current.offsetParent.offsetWidth)
     ) {
-      setStyle('left')
+      setStyle('left');
     } else {
-      setStyle(style)
+      setStyle(style);
     }
-  })
+  });
 
-  const [itemsToShow, setItemsToShow] = useState(props.Data)
-  const [itemsStack, setItemsStack] = useState([props.Data])
-  const [id, setId] = useState(props.Data.id)
-  const [move, changeMove] = useState('next')
-  const [style, setStyle] = useState(null)
+  const [itemsToShow, setItemsToShow] = useState(Data);
+  const [itemsStack, setItemsStack] = useState([Data]);
+  const [id, setId] = useState(Data.id);
+  const [move, changeMove] = useState('next');
 
-  const notificationRef = useRef(null)
-
-  const moveToNext = value => {
-    const newItems = itemsToShow.items.find(item => item.value === value)
+  const moveToNext = (value) => {
+    const newItems = itemsToShow.items.find((item) => item.value === value);
 
     if (
-      newItems !== undefined &&
-      'items' in newItems &&
-      newItems.items.length > 0
+      newItems !== undefined
+      && 'items' in newItems
+      && newItems.items.length > 0
     ) {
-      setItemsToShow(newItems)
-      setId(newItems.id)
-      setItemsStack([...itemsStack, itemsToShow])
-      changeMove('next')
-    } else {
+      setItemsToShow(newItems);
+      setId(newItems.id);
+      setItemsStack([...itemsStack, itemsToShow]);
+      changeMove('next');
     }
-  }
+  };
 
   const moveToPrevious = () => {
-    const newItemsStack = [...itemsStack]
-    const newItemsToShow = newItemsStack.pop()
+    const newItemsStack = [...itemsStack];
+    const newItemsToShow = newItemsStack.pop();
 
     if (newItemsToShow !== undefined) {
-      setItemsToShow(newItemsToShow)
-      setId(newItemsToShow.id)
-      setItemsStack(newItemsStack)
-      changeMove('prev')
+      setItemsToShow(newItemsToShow);
+      setId(newItemsToShow.id);
+      setItemsStack(newItemsStack);
+      changeMove('prev');
     }
-  }
+  };
 
-  const childFactoryCreator = classNames => child =>
-    React.cloneElement(child, { classNames })
+  const childFactoryCreator = (classNames) => (child) => React.cloneElement(child, { classNames });
 
-  const animation = []
-
-  if (props.animation) {
-    animation[0] = props.animation[0] ? props.animation[0] : 'slideIn'
-    animation[1] = props.animation[0] ? props.animation[1] : 'slideOut'
-  } else {
-    animation[0] = 'slideIn'
-    animation[1] = 'slideOut'
-  }
   return (
     <TransitionGroup
       childFactory={childFactoryCreator(
-        move === 'next' ? animation[0] : animation[1]
+        move === 'next' ? animation[0] : animation[1],
       )}
     >
-      <CSSTransition
-        timeout={300}
-        in={true}
-        appear={true}
-        classNames='slideOut'
-        key={id}
-      >
+      <CSSTransition timeout={300} in appear classNames="slideOut" key={id}>
         <div
           className={[
             'MenuItems',
-            props.showMenuItems ? 'ShowMenuItems' : 'HideMenuItems'
+            showMenuItems ? 'ShowMenuItems' : 'HideMenuItems',
           ].join(' ')}
           ref={notificationRef}
-          onClick={event => {
-            event.stopPropagation()
+          onClick={(event) => {
+            event.stopPropagation();
           }}
           style={
             style === 'right'
               ? {
-                backgroundColor: props.color ? props.color : '#08cbc4',
-                width: props.width ? props.width : 300,
-                maxHeight: props.height ? props.height : 300,
-                right: 0
+                backgroundColor: color,
+                width,
+                maxHeight: height,
+                right: 0,
               }
               : {
-                backgroundColor: props.color ? props.color : '#08cbc4',
-                width: props.width ? props.width : 300,
-                maxHeight: props.height ? props.height : 300,
-                left: 0
+                backgroundColor: color,
+                width,
+                maxHeight: height,
+                left: 0,
               }
           }
         >
-          {itemsToShow.items.map(item => {
-            let checkItem = item.value.toUpperCase()
+          {itemsToShow.items.map((item) => {
+            const checkItem = item.value.toUpperCase();
             if (checkItem === 'BACK') {
               return (
                 <div
-                  className='Back'
+                  className="Back"
+                  key={item.id}
                   onClick={() => moveToPrevious()}
-                  id={item.id}
                 >
-                  <p className='BackArrow'>
+                  <p className="BackArrow">
                     <IoMdArrowDropleft />
                   </p>
                   <p
-                    className='backButton'
+                    className="backButton"
                     style={{
-                      color: props.textColor ? props.textColor : 'white'
+                      color: textColor,
                     }}
                   >
                     {item.value}
                   </p>
                 </div>
-              )
-            } else {
-              return (
-                <MenuItem
-                  id={item.id}
-                  textColor={props.textColor}
-                  value={item.value}
-                  moveToNext={moveToNext}
-                  nextValue={
-                    item.hasOwnProperty('items') && item.items.length > 0
-                  }
-                />
-              )
+              );
             }
+            return (
+              <MenuItem
+                key={item.id}
+                textColor={textColor}
+                value={item.value}
+                moveToNext={moveToNext}
+                nextValue={
+                  item.hasOwnProperty('items') && item.items.length > 0
+                }
+              />
+            );
           })}
         </div>
       </CSSTransition>
     </TransitionGroup>
-  )
-}
+  );
+};
 
 MenuItems.propTypes = {
   Data: PropTypes.object,
   animation: PropTypes.array,
-  showMenuItems: PropTypes.boolean,
+  showMenuItems: PropTypes.bool,
   color: PropTypes.any,
   textColor: PropTypes.any,
   width: PropTypes.any,
-  height: PropTypes.any
-}
+  height: PropTypes.any,
+};
 
-export default MenuItems
+export default MenuItems;

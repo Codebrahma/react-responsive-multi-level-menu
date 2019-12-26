@@ -1,117 +1,137 @@
-import React, { useState, useEffect, useRef } from 'react'
-import MenuItems from './MenuItems/MenuItems'
-import BurgerMenu from './BurgerMenu/BurgerMenu'
-import './styles.css'
-import PropTypes from 'prop-types'
+import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import MenuItems from './MenuItems/MenuItems';
+import BurgerMenu from './BurgerMenu/BurgerMenu';
+import './styles.css';
 
-const MenuBar = props => {
-  useEffect(() => {
-    document.addEventListener('mousedown', event =>
-      handleClickOutside(event, menubarRef)
-    )
-  })
+const MenuBar = ({
+  data,
+  backgroundColor,
+  textColor,
+  burgerIconLineColor,
+  burgerIconStyle,
+  style,
+  animation,
+  menuItemsWidth,
+  menuItemsMaxHeight,
+  fontSize,
+}) => {
+  const [showMenuItems, changeShowMenuItems] = useState(false);
 
   function handleClickOutside(event, ref) {
     if (ref.current && !ref.current.contains(event.target)) {
-      changeShowMenuItems(false)
+      changeShowMenuItems(false);
     }
   }
+  useEffect(() => {
+    document.addEventListener('mousedown', (event) => handleClickOutside(event, menubarRef));
+  });
 
-  const [showMenuItems, changeShowMenuItems] = useState(false)
+  const Data = {
+    value: 'MenuItems',
+    items: data,
+  };
 
-  const menuItems = {
-    value: 'menuItems',
-    items: [
-      {
-        value: 'Send',
-        items: [
-          {
-            value: 'Back'
-          },
-          {
-            value: 'Data Props',
-            items: [
-              {
-                value: 'Back'
-              },
-              {
-                value: 'To Edit this'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        value: 'The',
-        items: []
-      },
-      { value: 'Data' },
-      { value: 'Props' }
-    ]
-  }
-
-  let Data = {}
-  if (props.data) {
-    Data = props.data
-  } else {
-    Data = menuItems
-  }
-
-  const generateId = data => {
-    data.id =
-      '_' +
+  const generateId = (passedData, level) => {
+    passedData.id = `_${ // eslint-disable-line
       Math.random()
         .toString(36)
-        .substr(2, 9)
-    for (let i = 0; data.items && i < data.items.length; i++) {
-      generateId(data.items[i])
+        .substr(2, 9)}`;
+    if (level > 0) {
+      if (passedData.items) {
+        if (passedData.items[0]) {
+          if (passedData.items[0].value !== 'back') {
+            passedData.items.unshift({
+              value: 'back',
+            });
+          }
+        }
+      }
     }
-  }
-  generateId(Data)
+    level += 1;
+    for (let i = 0; data.items && i < data.items.length; i++) {
+      generateId(data.items[i], level);
+    }
+  };
+  generateId(Data, 0);
 
-  const showItemsHandler = event => {
-    event.stopPropagation()
+  const showItemsHandler = (event) => {
+    event.stopPropagation();
 
-    changeShowMenuItems(!showMenuItems)
-  }
+    changeShowMenuItems(!showMenuItems);
+  };
 
   const closeItemsHandler = () => {
-    changeShowMenuItems(false)
-  }
+    changeShowMenuItems(false);
+  };
 
-  let classNames = ''
-  if (props.style) {
-    classNames = [props.style, 'menu'].join(' ')
+  let classNames = '';
+  if (style) {
+    classNames = [style, 'menu'].join(' ');
   } else {
-    classNames = 'menu'
+    classNames = 'menu';
   }
 
-  const menubarRef = useRef(null)
+  const menubarRef = useRef(null);
 
   return (
-    <div className={classNames} ref={menubarRef} onClick={closeItemsHandler} style={{fontSize: props.fontSize ? props.fontSize : 16}}>
+    <div
+      className={classNames}
+      ref={menubarRef}
+      onClick={closeItemsHandler}
+      style={{ fontSize: fontSize || 16 }}
+    >
       <BurgerMenu
         showItemsHandler={showItemsHandler}
-        color={props.backgroundColor}
-        style={props.burgerIconStyle}
-        lineColor={props.burgerIconLineColor}
+        color={backgroundColor}
+        style={burgerIconStyle}
+        lineColor={burgerIconLineColor}
       />
 
       <MenuItems
         showMenuItems={showMenuItems}
-        animation={props.animation}
-        color={props.backgroundColor}
+        animation={animation}
+        color={backgroundColor}
         Data={Data}
-        textColor={props.textColor}
-        width={props.menuItemsWidth}
-        height={props.menuItemsMaxHeight}
+        textColor={textColor}
+        width={menuItemsWidth}
+        height={menuItemsMaxHeight}
       />
     </div>
-  )
-}
+  );
+};
+
+MenuBar.defaultProps = {
+  data: [
+    {
+      value: 'Send',
+      items: [
+        {
+          value: 'Data Props',
+          items: [
+            {
+              value: 'To Edit this',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'The',
+    },
+    { value: 'Data' },
+    { value: 'Props' },
+  ],
+  animation: ['slideIn', 'slideOut'],
+  backgroundColor: '#4dccc4',
+  textColor: 'white',
+  burgerIconLineColor: 'white',
+  menuItemsWidth: 300,
+  menuItemsMaxHeight: 300,
+};
 
 MenuBar.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   backgroundColor: PropTypes.string,
   animation: PropTypes.array,
   textColor: PropTypes.any,
@@ -120,7 +140,7 @@ MenuBar.propTypes = {
   burgerIconStyle: PropTypes.string,
   burgerIconLineColor: PropTypes.string,
   style: PropTypes.any,
-  fontSize: PropTypes.any
-}
+  fontSize: PropTypes.any,
+};
 
-export default MenuBar
+export default MenuBar;

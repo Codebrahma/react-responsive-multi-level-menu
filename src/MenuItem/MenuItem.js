@@ -5,7 +5,7 @@ import { IoMdArrowDropright } from 'react-icons/io'
 const MenuItem = props => {
   return (
     <div className='MenuItem' onClick={() => props.moveToNext(props.value)}>
-      <p className='Value' style={{ color: props.textColor ? props.textColor : 'white' }}>
+      <p className='Value' style={{ color: props.textColor }}>
         {props.value}
       </p>
       <p
