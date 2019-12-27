@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { IoMdArrowDropright } from 'react-icons/io';
 
 const MenuItem = ({
-  item, textColor, nextValue, moveToNext,
+  item, nextValue, moveToNext,
 }) => (
   <div className="MenuItem" onClick={() => moveToNext(item)}>
-    <p className="Value" style={{ color: textColor }}>
+    <p className="Value">
       {item.value}
     </p>
     <p className="NextArrow" style={{ display: nextValue ? 'block' : 'none' }}>
@@ -19,7 +19,6 @@ MenuItem.propTypes = {
   item: PropTypes.shape({}).isRequired,
   nextValue: PropTypes.bool.isRequired,
   moveToNext: PropTypes.func.isRequired,
-  textColor: PropTypes.string.isRequired,
 };
 
 export default MenuItem;

@@ -71,16 +71,9 @@ const MenuBar = ({
     changeShowMenuItems(false);
   };
 
-  let classNames = '';
-  if (style) {
-    classNames = [style, 'menu'].join(' ');
-  } else {
-    classNames = 'menu';
-  }
-
   return (
     <div
-      className={classNames}
+      className={`menu ${style}`}
       ref={menubarRef}
       onClick={closeItemsHandler}
       style={{ fontSize }}
@@ -107,23 +100,8 @@ const MenuBar = ({
 MenuBar.defaultProps = {
   data: [
     {
-      value: 'Send',
-      items: [
-        {
-          value: 'Data Props',
-          items: [
-            {
-              value: 'To Edit this',
-            },
-          ],
-        },
-      ],
+      value: 'No data found',
     },
-    {
-      value: 'The',
-    },
-    { value: 'Data' },
-    { value: 'Props' },
   ],
   animation: ['slideIn', 'slideOut'],
   backgroundColor: '#4dccc4',

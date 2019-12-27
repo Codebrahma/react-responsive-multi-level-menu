@@ -35,15 +35,15 @@
 
 .ShowMenuItems {
   transition: 0.5s;
-  transform: translateY(0px);
-  opacity: 1;
+  transform: translateY(0px) !important;
+  opacity: 1 !important;
   cursor: pointer;
 }
 
 .HideMenuItems {
-  transform: translateY(20px);
+  transform: translateY(20px) !important;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.5s  !important;
   cursor: default;
   visibility: hidden;
 }
@@ -51,7 +51,6 @@
 
 .backButton {
   font-weight: 300;
-  color: white;
 }
 
 .BackArrow {

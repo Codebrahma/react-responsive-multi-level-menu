@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'; // eslint-disable-line
+import React, { useState, useRef, useEffect } from "react"; // eslint-disable-line
 import { IoMdArrowDropleft } from 'react-icons/io';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
@@ -12,23 +12,23 @@ const MenuItems = ({
   textColor,
   width,
 }) => {
-  const [style, setStyle] = useState(null);
-  const notificationRef = useRef(null);
+  const [offset, setOffset] = useState(null);
+  const menuItems = useRef(null);
   useEffect(() => {
     if (
-      notificationRef.current
-      && notificationRef.current.offsetParent.offsetLeft
-        > notificationRef.current.offsetParent.offsetWidth
+      menuItems.current
+      && menuItems.current.offsetParent.offsetLeft
+        > menuItems.current.offsetParent.offsetWidth
     ) {
-      setStyle('right');
+      setOffset('right');
     } else if (
-      notificationRef.current
-      && notificationRef.current.offsetParent.offsetLeft
-        < (notificationRef.current.offsetParent.offsetWidth)
+      menuItems.current
+      && menuItems.current.offsetParent.offsetLeft
+        < (menuItems.current.offsetParent.offsetWidth)
     ) {
-      setStyle('left');
+      setOffset('left');
     } else {
-      setStyle(style);
+      setOffset(offset);
     }
   });
 
@@ -53,8 +53,8 @@ const MenuItems = ({
         setItemsStack([...itemsStack, itemsToShow]);
         changeMove('next');
       }
-    } else {
-      targetItem.clickHandler();
+    } else if (targetItem.onClick) {
+      targetItem.onClick();
     }
   };
 
@@ -77,29 +77,30 @@ const MenuItems = ({
         move === 'next' ? animation[0] : animation[1],
       )}
     >
-      <CSSTransition timeout={300} in appear classNames="slideOut" key={id}>
+      <CSSTransition timeout={300} mountOnEnter unmountOnExit key={id}>
         <div
-          className={[
-            'MenuItems',
-            showMenuItems ? 'ShowMenuItems' : 'HideMenuItems',
-          ].join(' ')}
-          ref={notificationRef}
+          className={`MenuItems ${
+            showMenuItems ? 'ShowMenuItems' : 'HideMenuItems'
+          }`}
+          ref={menuItems}
           onClick={(event) => {
             event.stopPropagation();
           }}
           style={
-              style === 'right'
-                ? {
-                  backgroundColor: color,
-                  width,
-                  right: 0,
-                }
-                : {
-                  backgroundColor: color,
-                  width,
-                  left: 0,
-                }
-            }
+            offset === 'right'
+              ? {
+                backgroundColor: color,
+                width,
+                color: textColor,
+                right: 0,
+              }
+              : {
+                backgroundColor: color,
+                width,
+                color: textColor,
+                left: 0,
+              }
+          }
         >
           {itemsToShow.items.map((item) => {
             const checkItem = item.value;
@@ -113,14 +114,7 @@ const MenuItems = ({
                   <p className="BackArrow">
                     <IoMdArrowDropleft />
                   </p>
-                  <p
-                    className="backButton"
-                    style={{
-                      color: textColor,
-                    }}
-                  >
-                    {item.value}
-                  </p>
+                  <p className="backButton">{item.value}</p>
                 </div>
               );
             }
@@ -131,8 +125,8 @@ const MenuItems = ({
                 item={item}
                 moveToNext={moveToNext}
                 nextValue={
-                    item.hasOwnProperty('items') && item.items.length > 0
-                  }
+                  item.hasOwnProperty('items') && item.items.length > 0
+                }
               />
             );
           })}
