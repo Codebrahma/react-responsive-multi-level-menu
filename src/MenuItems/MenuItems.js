@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react'; // eslint-disable-line
 import { IoMdArrowDropleft } from 'react-icons/io';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
@@ -11,7 +11,6 @@ const MenuItems = ({
   color,
   textColor,
   width,
-  height,
 }) => {
   const [style, setStyle] = useState(null);
   const notificationRef = useRef(null);
@@ -38,18 +37,24 @@ const MenuItems = ({
   const [id, setId] = useState(Data.id);
   const [move, changeMove] = useState('next');
 
-  const moveToNext = (value) => {
-    const newItems = itemsToShow.items.find((item) => item.value === value);
+  const moveToNext = (targetItem) => {
+    if (targetItem.items && targetItem.items.length > 0) {
+      const newItems = itemsToShow.items.find(
+        (item) => item.value === targetItem.value,
+      );
 
-    if (
-      newItems !== undefined
-      && 'items' in newItems
-      && newItems.items.length > 0
-    ) {
-      setItemsToShow(newItems);
-      setId(newItems.id);
-      setItemsStack([...itemsStack, itemsToShow]);
-      changeMove('next');
+      if (
+        newItems !== undefined
+        && 'items' in newItems
+        && newItems.items.length > 0
+      ) {
+        setItemsToShow(newItems);
+        setId(newItems.id);
+        setItemsStack([...itemsStack, itemsToShow]);
+        changeMove('next');
+      }
+    } else {
+      targetItem.clickHandler();
     }
   };
 
@@ -66,7 +71,6 @@ const MenuItems = ({
   };
 
   const childFactoryCreator = (classNames) => (child) => React.cloneElement(child, { classNames });
-
   return (
     <TransitionGroup
       childFactory={childFactoryCreator(
@@ -84,24 +88,22 @@ const MenuItems = ({
             event.stopPropagation();
           }}
           style={
-            style === 'right'
-              ? {
-                backgroundColor: color,
-                width,
-                maxHeight: height,
-                right: 0,
-              }
-              : {
-                backgroundColor: color,
-                width,
-                maxHeight: height,
-                left: 0,
-              }
-          }
+              style === 'right'
+                ? {
+                  backgroundColor: color,
+                  width,
+                  right: 0,
+                }
+                : {
+                  backgroundColor: color,
+                  width,
+                  left: 0,
+                }
+            }
         >
           {itemsToShow.items.map((item) => {
-            const checkItem = item.value.toUpperCase();
-            if (checkItem === 'BACK') {
+            const checkItem = item.value;
+            if (checkItem === 'back') {
               return (
                 <div
                   className="Back"
@@ -126,11 +128,11 @@ const MenuItems = ({
               <MenuItem
                 key={item.id}
                 textColor={textColor}
-                value={item.value}
+                item={item}
                 moveToNext={moveToNext}
                 nextValue={
-                  item.hasOwnProperty('items') && item.items.length > 0
-                }
+                    item.hasOwnProperty('items') && item.items.length > 0
+                  }
               />
             );
           })}
@@ -141,13 +143,12 @@ const MenuItems = ({
 };
 
 MenuItems.propTypes = {
-  Data: PropTypes.object,
-  animation: PropTypes.array,
-  showMenuItems: PropTypes.bool,
-  color: PropTypes.any,
-  textColor: PropTypes.any,
-  width: PropTypes.any,
-  height: PropTypes.any,
+  Data: PropTypes.shape({}).isRequired,
+  animation: PropTypes.array.isRequired,
+  showMenuItems: PropTypes.bool.isRequired,
+  color: PropTypes.string.isRequired,
+  textColor: PropTypes.string.isRequired,
+  width: PropTypes.any.isRequired,
 };
 
 export default MenuItems;

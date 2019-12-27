@@ -1,28 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { IoMdArrowDropright } from 'react-icons/io'
+import React from 'react'; // eslint-disable-line
+import PropTypes from 'prop-types';
+import { IoMdArrowDropright } from 'react-icons/io';
 
-const MenuItem = props => {
-  return (
-    <div className='MenuItem' onClick={() => props.moveToNext(props.value)}>
-      <p className='Value' style={{ color: props.textColor }}>
-        {props.value}
-      </p>
-      <p
-        className='NextArrow'
-        style={{ display: props.nextValue ? 'block' : 'none' }}
-      >
-        {' '}
-        <IoMdArrowDropright />
-      </p>
-    </div>
-  )
-}
+const MenuItem = ({
+  item, textColor, nextValue, moveToNext,
+}) => (
+  <div className="MenuItem" onClick={() => moveToNext(item)}>
+    <p className="Value" style={{ color: textColor }}>
+      {item.value}
+    </p>
+    <p className="NextArrow" style={{ display: nextValue ? 'block' : 'none' }}>
+      {' '}
+      <IoMdArrowDropright />
+    </p>
+  </div>
+);
 MenuItem.propTypes = {
-  value: PropTypes.any,
-  nextValue: PropTypes.any,
-  moveToNext: PropTypes.func,
-  textColor: PropTypes.string
-}
+  item: PropTypes.shape({}).isRequired,
+  nextValue: PropTypes.bool.isRequired,
+  moveToNext: PropTypes.func.isRequired,
+  textColor: PropTypes.string.isRequired,
+};
 
-export default MenuItem
+export default MenuItem;

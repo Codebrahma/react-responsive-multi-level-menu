@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react"; // eslint-disable-line
 import PropTypes from 'prop-types';
 import MenuItems from './MenuItems/MenuItems';
 import BurgerMenu from './BurgerMenu/BurgerMenu';
@@ -13,7 +13,6 @@ const MenuBar = ({
   style,
   animation,
   menuItemsWidth,
-  menuItemsMaxHeight,
   fontSize,
 }) => {
   const [showMenuItems, changeShowMenuItems] = useState(false);
@@ -23,8 +22,13 @@ const MenuBar = ({
       changeShowMenuItems(false);
     }
   }
+  const menubarRef = useRef(null);
+
   useEffect(() => {
     document.addEventListener('mousedown', (event) => handleClickOutside(event, menubarRef));
+    return () => {
+      document.removeEventListener('mousedown', (event) => handleClickOutside(event, menubarRef));
+    };
   });
 
   const Data = {
@@ -33,10 +37,12 @@ const MenuBar = ({
   };
 
   const generateId = (passedData, level) => {
-    passedData.id = `_${ // eslint-disable-line
+    passedData.id = `_${
       Math.random()
         .toString(36)
-        .substr(2, 9)}`;
+        .substr(2, 9)
+    }`;
+
     if (level > 0) {
       if (passedData.items) {
         if (passedData.items[0]) {
@@ -49,8 +55,8 @@ const MenuBar = ({
       }
     }
     level += 1;
-    for (let i = 0; data.items && i < data.items.length; i++) {
-      generateId(data.items[i], level);
+    for (let i = 0; passedData.items && i < passedData.items.length; i += 1) {
+      generateId(passedData.items[i], level);
     }
   };
   generateId(Data, 0);
@@ -72,14 +78,12 @@ const MenuBar = ({
     classNames = 'menu';
   }
 
-  const menubarRef = useRef(null);
-
   return (
     <div
       className={classNames}
       ref={menubarRef}
       onClick={closeItemsHandler}
-      style={{ fontSize: fontSize || 16 }}
+      style={{ fontSize }}
     >
       <BurgerMenu
         showItemsHandler={showItemsHandler}
@@ -95,7 +99,6 @@ const MenuBar = ({
         Data={Data}
         textColor={textColor}
         width={menuItemsWidth}
-        height={menuItemsMaxHeight}
       />
     </div>
   );
@@ -127,20 +130,21 @@ MenuBar.defaultProps = {
   textColor: 'white',
   burgerIconLineColor: 'white',
   menuItemsWidth: 300,
-  menuItemsMaxHeight: 300,
+  style: '',
+  burgerIconStyle: '',
+  fontSize: 16,
 };
 
 MenuBar.propTypes = {
   data: PropTypes.array,
   backgroundColor: PropTypes.string,
   animation: PropTypes.array,
-  textColor: PropTypes.any,
+  textColor: PropTypes.string,
   menuItemsWidth: PropTypes.any,
-  menuItemsMaxHeight: PropTypes.any,
   burgerIconStyle: PropTypes.string,
   burgerIconLineColor: PropTypes.string,
-  style: PropTypes.any,
-  fontSize: PropTypes.any,
+  style: PropTypes.string,
+  fontSize: PropTypes.number,
 };
 
 export default MenuBar;

@@ -1,8 +1,11 @@
 import React from "react";
 
 import ExampleComponent from "cb-react-menubar";
+import { Switch, Route } from "react-router-dom";
+import FirstPage from "./FirstPage";
+import SecondPage from "./SecondPage";
 
-const App = () => {
+const App = (props) => {
   const menuItems = [
     {
       value: "Fashion",
@@ -36,10 +39,13 @@ const App = () => {
     },
     {
       value: "Electronics",
+      clickHandler:()=>{
+        alert("hai")
+      }
     },
     {
       value: "Furnitures",
-      items: []
+      items: [],
     },
     {
       value: "Jewelery&watches",
@@ -53,10 +59,7 @@ const App = () => {
   return (
     <div style={{ marginLeft: 100 }} className="Main">
       <h1>Hello google</h1>
-      <ExampleComponent
-        data={menuItems}
-        animation={animation}
-      />
+      <ExampleComponent data={menuItems} animation={animation} />
     </div>
   );
 };

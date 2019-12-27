@@ -1,12 +1,14 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line
 import PropTypes from 'prop-types';
 
-const BurgerMenu = ({ style , showItemsHandler , color , lineColor }) => {
-  let classNames
+const BurgerMenu = ({
+  style, showItemsHandler, color, lineColor,
+}) => {
+  let classNames;
   if (style) {
-    classNames = style
+    classNames = style;
   } else {
-    classNames = 'BurgerMenu'
+    classNames = 'BurgerMenu';
   }
   return (
     <div
@@ -19,25 +21,25 @@ const BurgerMenu = ({ style , showItemsHandler , color , lineColor }) => {
       }
     >
       <div
-        className='line'
-        style={{ backgroundColor: lineColor}}
+        className="line"
+        style={{ backgroundColor: lineColor }}
       />
       <div
-        className='line'
-        style={{ backgroundColor: lineColor}}
+        className="line"
+        style={{ backgroundColor: lineColor }}
       />
       <div
-        className='line'
-        style={{ backgroundColor: lineColor}}
+        className="line"
+        style={{ backgroundColor: lineColor }}
       />
     </div>
-  )
-}
+  );
+};
 BurgerMenu.propTypes = {
-  showItemsHandler: PropTypes.any,
-  color: PropTypes.any,
-  style: PropTypes.string,
-  lineColor: PropTypes.string
-}
+  showItemsHandler: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
+  style: PropTypes.string.isRequired,
+  lineColor: PropTypes.string.isRequired,
+};
 
-export default BurgerMenu
+export default BurgerMenu;
