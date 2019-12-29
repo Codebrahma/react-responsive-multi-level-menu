@@ -33,22 +33,19 @@ const MenuBar = ({
     };
   });
 
-  const generateId = (passedData, level) => {
+  const generateBack = (passedData, level) => {
     if (level > 0 && passedData[0].value !== 'back') {
       passedData.unshift({
         value: 'back'
       });
     }
     for (let i = 0; i < passedData.length; i += 1) {
-      passedData[i].id = Math.random()
-        .toString(36)
-        .substr(2, 9);
       if (passedData[i].items && passedData[i].items.length > 0) {
-        generateId(passedData[i].items, (level += 1));
+        generateBack(passedData[i].items, (level += 1));
       }
     }
   };
-  generateId(data, 0);
+  generateBack(data, 0);
 
   const showItemsHandler = event => {
     event.stopPropagation();

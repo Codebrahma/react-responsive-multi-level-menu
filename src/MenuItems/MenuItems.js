@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"; // eslint-disable-line
+import React, { useState, useRef, useEffect } from 'react'; // eslint-disable-line
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import MenuItem from '../MenuItem/MenuItem';
@@ -13,7 +13,6 @@ const MenuItems = ({
 }) => {
   const [offset, setOffset] = useState(null);
   const menuItemsRef = useRef(null);
-  console.log(animation)
   useEffect(() => {
     if (
       menuItemsRef.current &&
@@ -35,6 +34,7 @@ const MenuItems = ({
   const [itemsToShow, setItemsToShow] = useState(Data);
   const [itemsStack, setItemsStack] = useState([Data]);
   const [move, changeMove] = useState('next');
+  const [id, setId] = useState(null);
 
   const moveToNext = targetItem => {
     if (targetItem.items && targetItem.items.length > 0) {
@@ -50,6 +50,11 @@ const MenuItems = ({
         setItemsToShow(newItems.items);
         setItemsStack([...itemsStack, itemsToShow]);
         changeMove('next');
+        setId(
+          Math.random()
+            .toString(36)
+            .substr(2, 9)
+        );
       }
     } else if (targetItem.onClick) {
       targetItem.onClick();
@@ -64,6 +69,11 @@ const MenuItems = ({
       setItemsToShow(newItemsToShow);
       setItemsStack(newItemsStack);
       changeMove('prev');
+      setId(
+        Math.random()
+          .toString(36)
+          .substr(2, 9)
+      );
     }
   };
   const childFactoryCreator = classNames => child =>
@@ -74,12 +84,7 @@ const MenuItems = ({
         move === 'next' ? animation[0] : animation[1]
       )}
     >
-      <CSSTransition
-        timeout={300}
-        key={Math.random()
-          .toString(36)
-          .substr(2, 9)}
-      >
+      <CSSTransition timeout={300} key={id}>
         <div
           className={`MenuItems ${
             showMenuItems ? 'ShowMenuItems' : 'HideMenuItems'
@@ -110,7 +115,9 @@ const MenuItems = ({
               return (
                 <div
                   className="Back"
-                  key={item.id}
+                  key={Math.random()
+                    .toString(36)
+                    .substr(2, 9)}
                   onClick={() => moveToPrevious()}
                 >
                   <p className="BackArrow">
@@ -130,7 +137,9 @@ const MenuItems = ({
             }
             return (
               <MenuItem
-                key={item.id}
+                key={Math.random()
+                  .toString(36)
+                  .substr(2, 9)}
                 textColor={textColor}
                 item={item}
                 moveToNext={moveToNext}
@@ -147,7 +156,7 @@ const MenuItems = ({
 };
 
 MenuItems.propTypes = {
-  Data: PropTypes.shape({}).isRequired,
+  Data: PropTypes.array.isRequired,
   animation: PropTypes.array.isRequired,
   showMenuItems: PropTypes.bool.isRequired,
   color: PropTypes.string.isRequired,
