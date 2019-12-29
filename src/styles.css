@@ -54,7 +54,6 @@
 }
 
 .BackArrow {
-  transform: scale(2.5, 2);
   color: rgba(212, 204, 198, 0.6);
   position: relative;
   left: -6px;
@@ -79,13 +78,6 @@
   justify-content: space-between;
 }
 
-
-
-.NextArrow {
-  color: rgba(0, 0, 0, 0.1);
-  transform: scale(2.5, 2);
-
-}
 
 .MenuItem:hover {
   background-color: rgba(255, 248, 213, 0.1);

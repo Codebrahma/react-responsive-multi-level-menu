@@ -13,7 +13,7 @@ const MenuBar = ({
   style,
   animation,
   menuItemsWidth,
-  fontSize,
+  fontSize
 }) => {
   const [showMenuItems, changeShowMenuItems] = useState(false);
 
@@ -25,45 +25,33 @@ const MenuBar = ({
   const menubarRef = useRef(null);
 
   useEffect(() => {
-    document.addEventListener('mousedown', (event) => handleClickOutside(event, menubarRef));
+    document.addEventListener('mousedown', event =>
+      handleClickOutside(event, menubarRef));
     return () => {
-      document.removeEventListener('mousedown', (event) => handleClickOutside(event, menubarRef));
+      document.removeEventListener('mousedown', event =>
+        handleClickOutside(event, menubarRef));
     };
   });
 
-  const Data = {
-    value: 'MenuItems',
-    items: data,
-  };
-
   const generateId = (passedData, level) => {
-    passedData.id = `_${
-      Math.random()
+    if (level > 0 && passedData[0].value !== 'back') {
+      passedData.unshift({
+        value: 'back'
+      });
+    }
+    for (let i = 0; i < passedData.length; i += 1) {
+      passedData[i].id = Math.random()
         .toString(36)
-        .substr(2, 9)
-    }`;
-
-    if (level > 0) {
-      if (passedData.items) {
-        if (passedData.items[0]) {
-          if (passedData.items[0].value !== 'back') {
-            passedData.items.unshift({
-              value: 'back',
-            });
-          }
-        }
+        .substr(2, 9);
+      if (passedData[i].items && passedData[i].items.length > 0) {
+        generateId(passedData[i].items, (level += 1));
       }
     }
-    level += 1;
-    for (let i = 0; passedData.items && i < passedData.items.length; i += 1) {
-      generateId(passedData.items[i], level);
-    }
   };
-  generateId(Data, 0);
+  generateId(data, 0);
 
-  const showItemsHandler = (event) => {
+  const showItemsHandler = event => {
     event.stopPropagation();
-
     changeShowMenuItems(!showMenuItems);
   };
 
@@ -89,7 +77,7 @@ const MenuBar = ({
         showMenuItems={showMenuItems}
         animation={animation}
         color={backgroundColor}
-        Data={Data}
+        Data={data}
         textColor={textColor}
         width={menuItemsWidth}
       />
@@ -100,8 +88,8 @@ const MenuBar = ({
 MenuBar.defaultProps = {
   data: [
     {
-      value: 'No data found',
-    },
+      value: 'No data found'
+    }
   ],
   animation: ['slideIn', 'slideOut'],
   backgroundColor: '#4dccc4',
@@ -110,7 +98,7 @@ MenuBar.defaultProps = {
   menuItemsWidth: 300,
   style: '',
   burgerIconStyle: '',
-  fontSize: 16,
+  fontSize: 16
 };
 
 MenuBar.propTypes = {
@@ -122,7 +110,7 @@ MenuBar.propTypes = {
   burgerIconStyle: PropTypes.string,
   burgerIconLineColor: PropTypes.string,
   style: PropTypes.string,
-  fontSize: PropTypes.number,
+  fontSize: PropTypes.number
 };
 
 export default MenuBar;
