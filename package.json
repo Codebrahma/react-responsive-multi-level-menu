@@ -20,9 +20,7 @@
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
-    "docz:dev": "cd menubar-docs && npm run dev",
-    "docz:build": "cd menubar-docs && npm run build",
-    "docz:serve": "cd menubar-docs && npm run build && npm run serve"
+    "lint":"./node_modules/eslint/bin/eslint.js  --ext .js src/  --fix"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",

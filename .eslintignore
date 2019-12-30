@@ -1,3 +1,7 @@
 node_modules/
 examples/node_modules/
 dist/
+bundle.js
+example
+rollup.config.js
+src/test.js
