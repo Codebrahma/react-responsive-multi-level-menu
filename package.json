@@ -71,6 +71,7 @@
   ],
   "dependencies": {
     "autoprefixer": "^9.7.3",
+    "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "react-icons": "^3.8.0",
     "react-transition-group": "^4.3.0"

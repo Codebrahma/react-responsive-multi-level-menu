@@ -2,9 +2,9 @@ import React from "react"; // eslint-disable-line
 import PropTypes from 'prop-types';
 
 const MenuItem = ({ item, nextValue, moveToNext }) => (
-  <div className="MenuItem" onClick={() => moveToNext(item)}>
-    <p className="Value">{item.value}</p>
-    <p className="NextArrow" style={{ display: nextValue ? 'block' : 'none' }}>
+  <div className="menuItem" onClick={() => moveToNext(item)}>
+    <p className="value">{item.value}</p>
+    <p className="nextArrow" style={{ display: nextValue ? 'block' : 'none' }}>
       {' '}
       <svg
         xmlns="http://www.w3.org/2000/svg"

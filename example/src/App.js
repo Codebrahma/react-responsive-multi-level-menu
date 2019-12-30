@@ -54,7 +54,7 @@ const App = props => {
   ];
   // const backgroundColor = 'green'
   // const textColor = 'white'
-  const animation = ['fadeIn', 'fadeOut'];
+  const animation = ['slideIn', 'slideOut'];
 
   return (
     <div style={{ marginLeft: 100 }} className="Main">
@@ -62,7 +62,7 @@ const App = props => {
       <ExampleComponent
         data={menuItems}
         animation={animation}
-        burgerIconStyle="Hello"
+        burgerIconStyle="hello"
       />
     </div>
   );

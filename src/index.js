@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useRef } from "react"; // eslint-disable-line
+import React, { useState, useEffect, useRef } from 'react'; // eslint-disable-line
 import PropTypes from 'prop-types';
-import MenuItems from './MenuItems/MenuItems';
-import BurgerMenu from './BurgerMenu/BurgerMenu';
-import './styles.css';
+import MenuItems from './MenuItems';
+import HamburgerMenu from './HamburgerMenu';
+import './Style.scss';
 
 const MenuBar = ({
   data,
   backgroundColor,
   textColor,
-  burgerIconLineColor,
-  burgerIconStyle,
-  style,
+  iconColor,
+  hamBurgerClassName,
+  className,
   animation,
-  menuItemsWidth,
-  fontSize
+  optionContainerWidth
 }) => {
   const [showMenuItems, changeShowMenuItems] = useState(false);
 
@@ -29,7 +28,8 @@ const MenuBar = ({
       handleClickOutside(event, menubarRef));
     return () => {
       document.removeEventListener('mousedown', event =>
-        handleClickOutside(event, menubarRef));
+        handleClickOutside(event, menubarRef)
+      );
     };
   });
 
@@ -58,25 +58,24 @@ const MenuBar = ({
 
   return (
     <div
-      className={`menu ${style}`}
+      className={`menu ${className}`}
       ref={menubarRef}
       onClick={closeItemsHandler}
-      style={{ fontSize }}
     >
-      <BurgerMenu
+      <HamburgerMenu
         showItemsHandler={showItemsHandler}
         color={backgroundColor}
-        style={burgerIconStyle}
-        lineColor={burgerIconLineColor}
+        style={hamBurgerClassName}
+        lineColor={iconColor}
       />
 
       <MenuItems
         showMenuItems={showMenuItems}
         animation={animation}
-        color={backgroundColor}
         Data={data}
+        color={backgroundColor}
         textColor={textColor}
-        width={menuItemsWidth}
+        width={optionContainerWidth}
       />
     </div>
   );
@@ -91,23 +90,21 @@ MenuBar.defaultProps = {
   animation: ['slideIn', 'slideOut'],
   backgroundColor: '#4dccc4',
   textColor: 'white',
-  burgerIconLineColor: 'white',
-  menuItemsWidth: 300,
-  style: '',
-  burgerIconStyle: '',
-  fontSize: 16
+  iconColor: 'white',
+  optionContainerWidth: 300,
+  className: '',
+  hamBurgerClassName: ''
 };
 
 MenuBar.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+  animation: PropTypes.arrayOf(PropTypes.string),
   backgroundColor: PropTypes.string,
-  animation: PropTypes.array,
   textColor: PropTypes.string,
-  menuItemsWidth: PropTypes.any,
-  burgerIconStyle: PropTypes.string,
-  burgerIconLineColor: PropTypes.string,
-  style: PropTypes.string,
-  fontSize: PropTypes.number
+  optionContainerWidth: PropTypes.anyOf(PropTypes.number, PropTypes.string),
+  hamBurgerClassName: PropTypes.string,
+  iconColor: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default MenuBar;

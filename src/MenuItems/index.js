@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'; // eslint-disable-line
+import React, { useState, useRef, useEffect } from 'react'; //eslint-disable-line
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import MenuItem from '../MenuItem/MenuItem';
+import MenuItem from '../MenuItem';
 
 const MenuItems = ({
   Data,
@@ -26,8 +26,6 @@ const MenuItems = ({
         menuItemsRef.current.offsetParent.offsetWidth
     ) {
       setOffset('left');
-    } else {
-      setOffset(offset);
     }
   });
 
@@ -86,8 +84,8 @@ const MenuItems = ({
     >
       <CSSTransition timeout={300} key={id}>
         <div
-          className={`MenuItems ${
-            showMenuItems ? 'ShowMenuItems' : 'HideMenuItems'
+          className={`menuItems ${
+            showMenuItems ? 'showMenuItems' : 'hideMenuItems'
           }`}
           ref={menuItemsRef}
           onClick={event => {
@@ -114,7 +112,7 @@ const MenuItems = ({
             if (checkItem === 'back') {
               return (
                 <div
-                  className="Back"
+                  className="back"
                   key={Math.random()
                     .toString(36)
                     .substr(2, 9)}
@@ -156,12 +154,12 @@ const MenuItems = ({
 };
 
 MenuItems.propTypes = {
-  Data: PropTypes.array.isRequired,
-  animation: PropTypes.array.isRequired,
+  Data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  animation: PropTypes.arrayOf(PropTypes.string).isRequired,
   showMenuItems: PropTypes.bool.isRequired,
   color: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
-  width: PropTypes.any.isRequired
+  width: PropTypes.anyOf(PropTypes.number, PropTypes.string).isRequired
 };
 
 export default MenuItems;
