@@ -9,7 +9,8 @@ const MenuItems = ({
   showMenuItems,
   color,
   textColor,
-  width
+  width,
+  onClick
 }) => {
   const [offset, setOffset] = useState(null);
   const menuItemsRef = useRef(null);
@@ -66,8 +67,8 @@ const MenuItems = ({
             .substr(2, 9)
         );
       }
-    } else if (targetItem.onClick) {
-      targetItem.onClick();
+    } else if (onClick) {
+      onClick(targetItem);
     }
   };
 
@@ -122,11 +123,11 @@ const MenuItems = ({
                     .substr(2, 9)}
                   onClick={() => moveToPrevious()}
                 >
-                  <p className="BackArrow">
+                  <p className="backArrow">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="14"
-                      height="14"
+                      height="16"
                       viewBox="0 0 24 24"
                       fill="rgba(212, 204, 198, 0.6)"
                     >
@@ -163,7 +164,8 @@ MenuItems.propTypes = {
   showMenuItems: PropTypes.bool.isRequired,
   color: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default MenuItems;

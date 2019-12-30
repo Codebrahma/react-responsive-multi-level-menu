@@ -12,7 +12,8 @@ const MenuBar = ({
   hamBurgerClassName,
   className,
   animation,
-  optionContainerWidth
+  menuContainerWidth,
+  onClick
 }) => {
   const [showMenuItems, changeShowMenuItems] = useState(false);
 
@@ -76,7 +77,8 @@ const MenuBar = ({
         Data={data}
         color={backgroundColor}
         textColor={textColor}
-        width={optionContainerWidth}
+        width={menuContainerWidth}
+        onClick={onClick}
       />
     </div>
   );
@@ -92,9 +94,10 @@ MenuBar.defaultProps = {
   backgroundColor: '#4dccc4',
   textColor: 'white',
   iconColor: 'white',
-  optionContainerWidth: 300,
+  menuContainerWidth: 300,
   className: '',
-  hamBurgerClassName: ''
+  hamBurgerClassName: '',
+  onClick: null
 };
 
 MenuBar.propTypes = {
@@ -102,13 +105,11 @@ MenuBar.propTypes = {
   animation: PropTypes.arrayOf(PropTypes.string),
   backgroundColor: PropTypes.string,
   textColor: PropTypes.string,
-  optionContainerWidth: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string
-  ]),
+  menuContainerWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   hamBurgerClassName: PropTypes.string,
   iconColor: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default MenuBar;

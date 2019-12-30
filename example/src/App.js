@@ -34,10 +34,7 @@ const App = props => {
       ]
     },
     {
-      value: 'Electronics',
-      onClick: () => {
-        alert('hai');
-      }
+      value: 'Electronics'
     },
     {
       value: 'Furnitures',
@@ -58,6 +55,10 @@ const App = props => {
       <ExampleComponent
         data={menuItems}
         animation={animation}
+        onClick={item => {
+          console.log(item)
+          alert(item.value);
+        }}
       />
     </div>
   );

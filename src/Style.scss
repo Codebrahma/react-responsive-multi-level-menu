@@ -15,16 +15,19 @@
     }
   }
 }
+
 .menu {
   position: relative;
   font-family: Roboto;
   letter-spacing: 1px;
+
   .showMenuItems {
     transition: 0.5s;
     transform: translateY(0px);
     opacity: 1;
     cursor: pointer;
   }
+
   .hideMenuItems {
     transform: translateY(20px);
     opacity: 0;
@@ -51,6 +54,7 @@
       &:hover {
         background-color: rgba(255, 248, 213, 0.1);
       }
+
       .backButton {
         font-weight: 300;
       }
@@ -61,11 +65,13 @@
         left: -6px;
       }
     }
+
     .menuItem {
       padding: 2px 11px;
       font-weight: 300;
       display: flex;
       justify-content: space-between;
+
       &:hover {
         background-color: rgba(255, 248, 213, 0.1);
       }
