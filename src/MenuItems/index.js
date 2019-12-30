@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'; //eslint-disable-lin
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import MenuItem from '../MenuItem';
+import LeftArrow from '../Assets/LeftArrow';
 
 const MenuItems = ({
   Data,
@@ -124,15 +125,7 @@ const MenuItems = ({
                   onClick={() => moveToPrevious()}
                 >
                   <p className="backArrow">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="rgba(212, 204, 198, 0.6)"
-                    >
-                      <path d="M3 12l18-12v24z" />
-                    </svg>
+                    <LeftArrow />
                   </p>
                   <p className="backButton">{item.value}</p>
                 </div>

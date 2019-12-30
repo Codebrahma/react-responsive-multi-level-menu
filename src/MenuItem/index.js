@@ -1,20 +1,12 @@
 import React from "react"; // eslint-disable-line
 import PropTypes from 'prop-types';
+import RightArrow from '../Assets/RightArrow';
 
 const MenuItem = ({ item, nextValue, moveToNext }) => (
   <div className="menuItem" onClick={() => moveToNext(item)}>
     <p className="value">{item.value}</p>
     <p className="nextArrow" style={{ display: nextValue ? 'block' : 'none' }}>
-      {' '}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="#44b7b1"
-      >
-        <path d="M6 0l12 12-12 12z" />
-      </svg>
+      <RightArrow />
     </p>
   </div>
 );
