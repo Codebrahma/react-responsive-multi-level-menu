@@ -20,7 +20,7 @@
     "react/jsx-filename-extension": 0,
     "import/no-unresolved": 0,
     "import/extensions": 0,
-    "function-paren-newline": ["error", "consistent"],
+    "function-paren-newline": ["off"],
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
@@ -37,7 +37,6 @@
     "react/prop-types": "off",
     "no-param-reassign": "off",
     "quotes": ["error", "single"],
-
     "prettier/prettier" : "error"
   }
 }

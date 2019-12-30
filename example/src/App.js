@@ -1,10 +1,6 @@
 import React from 'react';
 
 import ExampleComponent from 'cb-react-menubar';
-import { Switch, Route } from 'react-router-dom';
-import FirstPage from './FirstPage';
-import SecondPage from './SecondPage';
-
 const App = props => {
   const menuItems = [
     {
@@ -57,12 +53,11 @@ const App = props => {
   const animation = ['slideIn', 'slideOut'];
 
   return (
-    <div style={{ marginLeft: 100 }} className="Main">
+    <div className="Main">
       <h1>Hello google</h1>
       <ExampleComponent
         data={menuItems}
         animation={animation}
-        burgerIconStyle="hello"
       />
     </div>
   );

@@ -4,11 +4,11 @@ body {
   font-family: sans-serif;
 }
 
-.hello{
-  height:20px;
-  width: 30px;
+.hello {
+ margin-top: 200px;
 }
 
-.Main{
+.Main {
   justify-content: space-between;
+  margin-left: 100px;
 }

@@ -17,13 +17,13 @@ const MenuItems = ({
     if (
       menuItemsRef.current &&
       menuItemsRef.current.offsetParent.offsetLeft >
-        menuItemsRef.current.offsetParent.offsetWidth
+        menuItemsRef.current.offsetWidth
     ) {
       setOffset('right');
     } else if (
       menuItemsRef.current &&
       menuItemsRef.current.offsetParent.offsetLeft <
-        menuItemsRef.current.offsetParent.offsetWidth
+        menuItemsRef.current.offsetWidth
     ) {
       setOffset('left');
     }
@@ -33,6 +33,18 @@ const MenuItems = ({
   const [itemsStack, setItemsStack] = useState([Data]);
   const [move, changeMove] = useState('next');
   const [id, setId] = useState(null);
+
+  const changeMenuItems = (
+    newItemsToShow,
+    newItemsStack,
+    updatedMove,
+    updatedId
+  ) => {
+    setItemsToShow(newItemsToShow);
+    setItemsStack(newItemsStack);
+    changeMove(updatedMove);
+    setId(updatedId);
+  };
 
   const moveToNext = targetItem => {
     if (targetItem.items && targetItem.items.length > 0) {
@@ -45,10 +57,10 @@ const MenuItems = ({
         'items' in newItems &&
         newItems.items.length > 0
       ) {
-        setItemsToShow(newItems.items);
-        setItemsStack([...itemsStack, itemsToShow]);
-        changeMove('next');
-        setId(
+        changeMenuItems(
+          newItems.items,
+          [...itemsStack, itemsToShow],
+          'next',
           Math.random()
             .toString(36)
             .substr(2, 9)
@@ -64,10 +76,10 @@ const MenuItems = ({
     const newItemsToShow = newItemsStack.pop();
 
     if (newItemsToShow !== undefined) {
-      setItemsToShow(newItemsToShow);
-      setItemsStack(newItemsStack);
-      changeMove('prev');
-      setId(
+      changeMenuItems(
+        newItemsToShow,
+        newItemsStack,
+        'prev',
         Math.random()
           .toString(36)
           .substr(2, 9)
@@ -91,21 +103,13 @@ const MenuItems = ({
           onClick={event => {
             event.stopPropagation();
           }}
-          style={
-            offset === 'right'
-              ? {
-                  backgroundColor: color,
-                  width,
-                  color: textColor,
-                  right: 0
-                }
-              : {
-                  backgroundColor: color,
-                  width,
-                  color: textColor,
-                  left: 0
-                }
-          }
+          style={{
+            backgroundColor: color,
+            width,
+            color: textColor,
+            right: offset === 'right' ? 0 : 'unset',
+            left: offset === 'left' ? 0 : 'unset'
+          }}
         >
           {itemsToShow.map(item => {
             const checkItem = item.value;
@@ -159,7 +163,7 @@ MenuItems.propTypes = {
   showMenuItems: PropTypes.bool.isRequired,
   color: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
-  width: PropTypes.anyOf(PropTypes.number, PropTypes.string).isRequired
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
 };
 
 export default MenuItems;

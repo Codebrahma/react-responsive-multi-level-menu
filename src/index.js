@@ -25,7 +25,8 @@ const MenuBar = ({
 
   useEffect(() => {
     document.addEventListener('mousedown', event =>
-      handleClickOutside(event, menubarRef));
+      handleClickOutside(event, menubarRef)
+    );
     return () => {
       document.removeEventListener('mousedown', event =>
         handleClickOutside(event, menubarRef)
@@ -101,7 +102,10 @@ MenuBar.propTypes = {
   animation: PropTypes.arrayOf(PropTypes.string),
   backgroundColor: PropTypes.string,
   textColor: PropTypes.string,
-  optionContainerWidth: PropTypes.anyOf(PropTypes.number, PropTypes.string),
+  optionContainerWidth: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
   hamBurgerClassName: PropTypes.string,
   iconColor: PropTypes.string,
   className: PropTypes.string
