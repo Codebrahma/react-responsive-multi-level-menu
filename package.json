@@ -20,7 +20,7 @@
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
-    "lint":"./node_modules/eslint/bin/eslint.js  --ext .js src/  --fix"
+    "lint": "./node_modules/eslint/bin/eslint.js  --ext .js src/  --fix"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -43,6 +43,7 @@
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-react": "^6.0.0",
     "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.0.0",
