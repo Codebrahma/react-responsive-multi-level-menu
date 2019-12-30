@@ -55,6 +55,8 @@ const App = props => {
       <ExampleComponent
         data={menuItems}
         animation={animation}
+        backgroundColor="grey"
+        textColor="white"
         onClick={item => {
           console.log(item)
           alert(item.value);

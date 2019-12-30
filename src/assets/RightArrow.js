@@ -1,12 +1,13 @@
 import React from 'react'; // eslint-disable-line
 
-const RightArrow = () => (
+const RightArrow = ({ color }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18"
     height="18"
     viewBox="0 0 24 24"
-    fill="#44b7b1"
+    fill={color}
+    opacity={0.5}
   >
     <path d="M6 0l12 12-12 12z" />
   </svg>

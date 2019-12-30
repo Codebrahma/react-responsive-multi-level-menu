@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'; //eslint-disable-line
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import MenuItem from '../MenuItem';
-import LeftArrow from '../Assets/LeftArrow';
+import MenuItem from '../menuItem';
+import LeftArrow from '../assets/LeftArrow';
 
 const MenuItems = ({
   Data,
@@ -125,7 +125,7 @@ const MenuItems = ({
                   onClick={() => moveToPrevious()}
                 >
                   <p className="backArrow">
-                    <LeftArrow />
+                    <LeftArrow color={textColor} />
                   </p>
                   <p className="backButton">{item.value}</p>
                 </div>

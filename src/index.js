@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'; // eslint-disable-line
 import PropTypes from 'prop-types';
-import MenuItems from './MenuItems';
-import HamburgerMenu from './HamburgerMenu';
+import MenuItems from './menuItems';
+import HamburgerMenu from './hamburgerMenu';
 import './Style.scss';
 
 const MenuBar = ({
