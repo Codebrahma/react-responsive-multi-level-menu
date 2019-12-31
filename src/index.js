@@ -63,6 +63,7 @@ const MenuBar = ({
       className={`menu ${className}`}
       ref={menubarRef}
       onClick={closeItemsHandler}
+      style={{ display: 'inline-flex' }}
     >
       <HamburgerMenu
         showItemsHandler={showItemsHandler}
