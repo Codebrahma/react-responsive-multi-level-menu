@@ -18,18 +18,19 @@ const MenuItems = ({
   useEffect(() => {
     if (
       menuItemsRef.current &&
-      menuItemsRef.current.offsetParent.offsetLeft >
+      document.body.offsetWidth - menuItemsRef.current.offsetParent.offsetLeft <
         menuItemsRef.current.offsetWidth
     ) {
       setOffset('right');
     } else if (
       menuItemsRef.current &&
-      menuItemsRef.current.offsetParent.offsetLeft <
+      document.body.offsetWidth - menuItemsRef.current.offsetParent.offsetLeft >
         menuItemsRef.current.offsetWidth
     ) {
       setOffset('left');
     }
   });
+  console.log(offset);
 
   const [itemsToShow, setItemsToShow] = useState(Data);
   const [itemsStack, setItemsStack] = useState([Data]);
