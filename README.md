@@ -11,30 +11,34 @@ npm install --save react-responsive-multi-level-menu
 ## Usage
 
 ```jsx
+
 import React, { Component } from 'react'
 
 import menubar from 'react-responsive-multi-level-menu'
 
-class Example extends Component {
+class App extends Component {
+
   render () {
-    return (
-      <menubar data={ItemsToBeRendered}/>
-    )
+
+    return <menubar data={ItemsToBeRendered} />
+
   }
 }
+
+export default App;
 ```
 
 ## Guide And Documentation
 
 For the complete documentation.visit the below link.
 
-https://cb-react-menubar-docs.netlify.com/src-introduction
+https://react-responsive-multi-level-menu-docs.netlify.com/src-introduction
 
 ## Live Preview
 
 For demo of menubar . Visit the below link
 
-https://cb-react-menubar-demo.netlify.com/
+https://react-responsive-multi-level-menu-demo.netlify.com/
 
 ## License
 
