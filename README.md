@@ -1,11 +1,11 @@
-# cb-react-menubar
+# react-responsive-multi-level-menu
 
 A react library which provides flexible and cool animated menubar with an easy to use API and a bunch of awesome features . Give it a try and you will love it for sure.
 
 ## Install
 
 ```bash
-npm install --save cb-react-menubar
+npm install --save react-responsive-multi-level-menu
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install --save cb-react-menubar
 ```jsx
 import React, { Component } from 'react'
 
-import menubar from 'cb-react-menubar'
+import menubar from 'react-responsive-multi-level-menu'
 
 class Example extends Component {
   render () {
