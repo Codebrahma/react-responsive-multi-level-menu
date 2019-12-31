@@ -30,7 +30,6 @@ const MenuItems = ({
       setOffset('left');
     }
   });
-  console.log(offset);
 
   const [itemsToShow, setItemsToShow] = useState(Data);
   const [itemsStack, setItemsStack] = useState([Data]);
@@ -152,6 +151,10 @@ const MenuItems = ({
   );
 };
 
+MenuItems.defaultProps = {
+  onClick: null
+};
+
 MenuItems.propTypes = {
   Data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   animation: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -159,7 +162,7 @@ MenuItems.propTypes = {
   color: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 };
 
 export default MenuItems;
