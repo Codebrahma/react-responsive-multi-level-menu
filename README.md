@@ -28,8 +28,8 @@ const menuItems = [
             }
            ] 
   },
-  { value: "Electronics", items: [] },
-  { value: "Furnitures", items: [] },
+  { value: "Electronics"},
+  { value: "Furnitures"},
   { value: "Jewelery&watches", items: [] }
 ];
 export default MenuItems;
@@ -45,6 +45,7 @@ Use the Menubar component anywhere and pass the props.
 
 import Menubar from "react-responsive-multi-level-menu";
 import MenuItems from "../path/where/menuItems/present";
+import "./styles.css"
 
 const app = () => {
   
