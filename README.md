@@ -26,9 +26,9 @@ export default App;
 
 ## Guide And Documentation
 
-For the complete documentation . Click <a style={{color:"#cc3a38"}} href="https://react-responsive-multi-level-menu-docs.netlify.com/src-introduction">here.
+For the complete documentation . Click <a style="color:#cc3a38" href="https://react-responsive-multi-level-menu-docs.netlify.com/src-introduction">here.
 
 ## Live Preview
 
-<a style={{color:"#cc3a38"}} href="https://react-responsive-multi-level-menu-demo.netlify.com/">Demo is worth thousand words</a>
+<a style="color:#cc3a38" href="https://react-responsive-multi-level-menu-demo.netlify.com/">Demo is worth thousand words</a>
 
