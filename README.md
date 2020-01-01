@@ -14,17 +14,48 @@ npm install --save react-responsive-multi-level-menu
 
 ## Usage
 
-```jsx
-import React, { Component } from 'react';
-import menubar from 'react-responsive-multi-level-menu';
 
-class App extends Component {
-  render() {
-    return <menubar data={ItemsToBeRendered} />;
-  }
-}
+### 1.Define the data
 
-export default App;
+* Define the data(menu items) as per the given format , which you want to render in the Menubar.
+
+```js
+const menuItems = [
+  { value: "Fashion", 
+    items: [
+            { value: "Men",
+              items: [{ value: "Shirts" }] 
+            }
+           ] 
+  },
+  { value: "Electronics", items: [] },
+  { value: "Furnitures", items: [] },
+  { value: "Jewelery&watches", items: [] }
+];
+export default MenuItems;
+
+```
+
+
+### 2. Use the Menubar component anywhere in your code
+
+Use the Menubar component anywhere and pass the props.
+
+```js
+
+import Menubar from "react-responsive-multi-level-menu";
+import MenuItems from "../path/where/menuItems/present";
+
+const app = () => {
+  
+  const animation=['slideIn' , 'slideOut']
+  <div>
+    <h1>This is Animated Menu-bar</h1>
+    <Menubar data={MenuItems} animation={animation} color="#FF5733" className="menubar"/>
+  </div>;
+};
+
+
 ```
 
 ## Guide And Documentation
