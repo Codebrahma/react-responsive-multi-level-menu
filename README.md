@@ -4,7 +4,7 @@
 A react library which provides flexible and cool animated menubar with an easy to use API and a bunch of awesome features . Give it a try and you will love it for sure.
 
 
-<img src="demo1.gif" alt="demo">
+<p align="center"><img src="demo1.gif" alt="demo"></p>
 
 ## Install
 
