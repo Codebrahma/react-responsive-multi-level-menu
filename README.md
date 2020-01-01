@@ -1,10 +1,7 @@
-import image from "./src/assets/demo1.gif"
 
 # react-responsive-multi-level-menu
 
 A react library which provides flexible and cool animated menubar with an easy to use API and a bunch of awesome features . Give it a try and you will love it for sure.
-
-<center><img src={image} alt="demo"></img></center>
 
 ## Install
 
@@ -16,7 +13,6 @@ npm install --save react-responsive-multi-level-menu
 
 ```jsx
 import React, { Component } from 'react';
-
 import menubar from 'react-responsive-multi-level-menu';
 
 class App extends Component {
@@ -30,9 +26,9 @@ export default App;
 
 ## Guide And Documentation
 
-For the complete documentation . Click <a href="https://react-responsive-multi-level-menu-docs.netlify.com/src-introduction">here.
+For the complete documentation . Click <a style={{color:"#cc3a38"}} href="https://react-responsive-multi-level-menu-docs.netlify.com/src-introduction">here.
 
 ## Live Preview
 
-<a href="https://react-responsive-multi-level-menu-demo.netlify.com/">Demo is worth thousand words</a>
+<a style={{color:"#cc3a38"}} href="https://react-responsive-multi-level-menu-demo.netlify.com/">Demo is worth thousand words</a>
 
