@@ -52,7 +52,7 @@ const app = () => {
   const animation=['slideIn' , 'slideOut']
   <div>
     <h1>This is Animated Menu-bar</h1>
-    <Menubar data={MenuItems} animation={animation} color="#FF5733" className="menubar"/>
+    <Menubar data={MenuItems} animation={animation} backgroundColor="#FF5733" className="menubar"/>
   </div>;
 };
 
