@@ -11,7 +11,8 @@ const MenuItems = ({
   color,
   textColor,
   width,
-  onClick
+  onClick,
+  closeMenu,
 }) => {
   const [offset, setOffset] = useState(null);
   const menuItemsRef = useRef(null);
@@ -48,10 +49,10 @@ const MenuItems = ({
     setId(updatedId);
   };
 
-  const moveToNext = targetItem => {
+  const moveToNext = (targetItem) => {
     if (targetItem.items && targetItem.items.length > 0) {
       const newItems = itemsToShow.find(
-        item => item.value === targetItem.value
+        (item) => item.value === targetItem.value
       );
 
       if (
@@ -63,13 +64,11 @@ const MenuItems = ({
           newItems.items,
           [...itemsStack, itemsToShow],
           'next',
-          Math.random()
-            .toString(36)
-            .substr(2, 9)
+          Math.random().toString(36).substr(2, 9)
         );
       }
     } else if (onClick) {
-      onClick(targetItem);
+      onClick(targetItem, closeMenu);
     }
   };
 
@@ -82,13 +81,11 @@ const MenuItems = ({
         newItemsToShow,
         newItemsStack,
         'prev',
-        Math.random()
-          .toString(36)
-          .substr(2, 9)
+        Math.random().toString(36).substr(2, 9)
       );
     }
   };
-  const childFactoryCreator = classNames => child =>
+  const childFactoryCreator = (classNames) => (child) =>
     React.cloneElement(child, { classNames });
   return (
     <TransitionGroup
@@ -102,7 +99,7 @@ const MenuItems = ({
             showMenuItems ? 'showMenuItems' : 'hideMenuItems'
           }`}
           ref={menuItemsRef}
-          onClick={event => {
+          onClick={(event) => {
             event.stopPropagation();
           }}
           style={{
@@ -110,18 +107,16 @@ const MenuItems = ({
             width,
             color: textColor,
             right: offset === 'right' ? 0 : 'unset',
-            left: offset === 'left' ? 0 : 'unset'
+            left: offset === 'left' ? 0 : 'unset',
           }}
         >
-          {itemsToShow.map(item => {
+          {itemsToShow.map((item) => {
             const checkItem = item.value;
             if (checkItem === 'back') {
               return (
                 <div
                   className="back"
-                  key={Math.random()
-                    .toString(36)
-                    .substr(2, 9)}
+                  key={Math.random().toString(36).substr(2, 9)}
                   onClick={() => moveToPrevious()}
                 >
                   <p className="backArrow">
@@ -133,9 +128,7 @@ const MenuItems = ({
             }
             return (
               <MenuItem
-                key={Math.random()
-                  .toString(36)
-                  .substr(2, 9)}
+                key={Math.random().toString(36).substr(2, 9)}
                 textColor={textColor}
                 item={item}
                 moveToNext={moveToNext}
@@ -152,7 +145,7 @@ const MenuItems = ({
 };
 
 MenuItems.defaultProps = {
-  onClick: null
+  onClick: null,
 };
 
 MenuItems.propTypes = {
@@ -162,7 +155,8 @@ MenuItems.propTypes = {
   color: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  closeMenu: PropTypes.func,
 };
 
 export default MenuItems;
