@@ -80,6 +80,7 @@ const MenuBar = ({
         textColor={textColor}
         width={menuContainerWidth}
         onClick={onClick}
+        closeMenu={closeItemsHandler}
       />
     </div>
   );
