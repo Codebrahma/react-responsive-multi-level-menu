@@ -30,7 +30,7 @@ const MenuItems = ({
     ) {
       setOffset('left');
     }
-  });
+  }, []);
 
   const [itemsToShow, setItemsToShow] = useState(Data);
   const [itemsStack, setItemsStack] = useState([Data]);
